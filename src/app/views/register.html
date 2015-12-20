@@ -1,0 +1,65 @@
+<md-card flex="90" class="auth-card">
+    <md-card-content>
+
+        <div class="card-header" layout="row" layout-align="space-between center">
+            <h3 class="md-title">
+                Create an Account
+            </h3>
+            <md-button href="/#/login" class="md-icon-button" aria-label="Close">
+                <md-icon md-font-set="material-icons">close</md-icon>
+            </md-button>
+        </div>
+
+        <form ng-submit="register()" name="registerForm" role="form">
+            <div layout>
+                <md-input-container flex>
+                    <label for="inputFirstName">First Name</label>
+                    <input type="text" name="first_name" id="inputFirstname" ng-model="newUser.firstName" required/>
+                </md-input-container>
+
+                <md-input-container flex>
+                    <label for="inputFirstName">Last Name</label>
+                    <input type="text" name="last_name" id="inputLastName" ng-model="newUser.lastName" required/>
+                </md-input-container>
+            </div>
+
+            <md-input-container>
+                <label for="inputEmail">Company</label>
+                <input type="text" id="inputCompanyname" ng-model="newUser.company" required/>
+            </md-input-container>
+
+            <md-input-container>
+                <label for="inputEmail">Email</label>
+                <input type="email" name="email" id="inputEmail" ng-model="newUser.email" required/>
+            </md-input-container>
+
+            <md-input-container>
+                <label for="inputPassword">Password</label>
+                <input type="password" name="password" id="inputPassword" ng-model="newUser.password" required/>
+            </md-input-container>
+
+            <md-input-container>
+                <label for="inputPasswordRegister2">Repeat password</label>
+                <input type="password" name="password2" id="inputPasswordRegister2" ng-model="newUser.password2" match="newUser.password" required/>
+                <div ng-messages="registerForm.password2.$error">
+                    <div ng-message="match">Passswords don't match.</div>
+                </div>
+            </md-input-container>
+
+            <!-- <md-checkbox ng-model="terms" value="terms" required>
+                I agree to the <ship-gooder></ship-gooder> terms & conditions.
+            </md-checkbox> -->
+            
+            <div layout="row">
+                <md-button
+                    flex="100"
+                    ng-disabled="registerForm.$pristine || registerForm.$invalid || newUser.password !== newUser.password2" 
+                    type="submit" 
+                    class="md-raised md-primary full-width"
+                >
+                    Register
+                </md-button>
+            </div>                
+        </form>
+    </md-card-content>
+</md-card>

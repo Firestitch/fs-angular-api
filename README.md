@@ -1,1 +1,1 @@
-# fs-angular-api
+http://firestitch.github.io/fs-angular-api

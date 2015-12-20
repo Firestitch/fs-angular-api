@@ -1,0 +1,36 @@
+<md-card flex="90" class="auth-card" >
+    <md-card-content>
+        <div layout="row" layout-align="center" style="margin: 1.2em 0;">
+            <div class="userpic-default">
+                <i class="material-icons">person</i>
+            </div>
+        </div>
+
+        <form ng-submit="authenticate()" name="loginForm" role="form">
+            <md-input-container>
+                <label for="inputEmail">Email</label>
+                <input type="email" id="inputEmail" ng-model="credentials.email" required/>
+            </md-input-container>
+
+            <md-input-container>
+                <label for="inputPassword">Password</label>
+                <input type="password" id="inputPassword" ng-model="credentials.password" required/>
+            </md-input-container>
+
+            <div layout="row">
+                <md-button
+                    flex="100"
+                    ng-disabled="$storage.granted || loginForm.$pristine || loginForm.$invalid" 
+                    type="submit" 
+                    class="md-raised md-primary full-width"
+                >
+                        Sign In
+                </md-button>
+            </div>
+
+            <div layout="row" layout-align="end">
+                <p> <a ng-href="/#/password/request-help">Need help?</a> </p>
+            </div>                
+        </form>
+    </md-card-content>
+</md-card>

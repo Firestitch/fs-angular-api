@@ -1,0 +1,396 @@
+//import the various styles in order of specificity
+//@import "elements";
+
+.md-button {
+    &.full-width {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    &.green {
+        color: #d6e147 !important;
+    }
+    
+    &.red {
+        color: #ca554e !important;
+    }
+
+    &.md-fab.md-micro {
+        $btn-size: 20px;
+        $icon-size: 12px;
+        $icon-offset: ($btn-size - $icon-size)/2;
+
+        line-height: $btn-size;
+        width: $btn-size;
+        height: $btn-size;
+        min-height: 0;
+
+        > md-icon {
+            font-size: $icon-size;
+
+            position: absolute;
+            top: $icon-offset;
+            left: $icon-offset;
+        }
+    }
+}
+
+.userpic-default {
+    $pic-size: 90px;
+    $icon-font-size: 110px;
+
+    height: $pic-size;
+    width: $pic-size;
+    background-color: #DDD;
+    border-radius: 50%;
+    overflow: hidden;
+
+    .material-icons {
+        font-size: $icon-font-size;
+        display: inline-block;
+        margin-left: - (($icon-font-size - $pic-size)/2);
+        color: #334;
+    }
+}
+
+.userpic-sm {
+    $pic-size: 75px;
+    $icon-font-size: 90px;
+    $border-width: 2px;
+
+    height: $pic-size + $border-width;
+    width: $pic-size + $border-width;
+    background-color: #DDD;
+    border-radius: 50%;
+    overflow: hidden;
+    border: $border-width solid #fff;
+
+    > .material-icons {
+        font-size: $icon-font-size;
+        display: inline-block;
+        margin-left: - (($icon-font-size - $pic-size + $border-width)/2);
+        color: #334;
+    }
+}
+
+.projectpic-sm {
+    height: 32px;
+    width: 32px;
+    margin: 16px;
+    border-radius: 50%;
+}
+
+md-card md-card-content {
+    padding: 16px 32px;
+
+    > h3.md-title {
+        margin: 16px 0;
+    }
+
+    > p {
+        font-weight: 400;
+        letter-spacing: 0.010em;
+        line-height: 1.6em;
+        margin: 0.8em 0 1.6em;
+    }
+
+    .card-header {
+        padding-bottom: 1px;
+    }
+
+    section .title {
+        background-color: #dadada;
+        margin: 0;
+        padding: 0.6em 1.2em;
+    }
+}
+
+.normal-content {
+    margin-top: 14px;
+
+    .md-fab.main {
+        position: absolute;
+        top: 100px;
+        right: 30px;
+
+        md-icon {
+            $pos: (56px - 24px) / 2;
+
+            position: absolute;
+            top: $pos;
+            left: $pos;
+        }
+
+        md-icon.ng-animate {
+            transition: 0.3s linear all;
+        }
+
+        md-icon.ng-enter {
+            transform: scale(0.01) rotate(-180deg);
+            opacity: 0;
+        }
+        md-icon.ng-enter.ng-enter-active {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
+        md-icon.ng-leave {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
+        md-icon.ng-leave.ng-leave-active {
+            transform: scale(0.01) rotate(180deg);
+            opacity: 0;
+        }
+    }
+}
+
+[layout="row"] > md-card.auth-card[flex] {
+    max-width: 420px;
+    margin-top: 60px;
+}
+
+md-radio-group.has-descr {
+    md-radio-button > div {
+        vertical-align: top;
+    }
+
+    .md-container {
+        top: 2px;
+    }
+
+    .desc {
+        display: block;
+        margin-top: 0.6em;
+        color: rgba(0,0,0,0.54);
+    }
+
+    > label {
+        color: rgba(0,0,0,0.54);
+    }
+}
+
+hr {
+    &.divider {
+        height: 2px;
+        background-color: $gray-lighter;
+        border: none;
+    }
+    &.divider-vertical {
+        width: 2px;
+        background-color: $gray-lighter;
+        border: none;
+    }
+}
+
+.data-block {
+    .data-block__title {
+        display: block;
+        font-size: 14px;
+    }
+
+    .data-block__value {
+        display: block;
+        font-size: 22px;
+    }
+}
+
+.section {
+    padding: 0px 20px 0px 0px;
+
+    &:last-child {
+        padding: 0px;
+    }
+}
+
+.section-title {
+    font-size: 16px;
+    padding: 10px 15px;
+    font-weight: normal;
+    background: $gray-lighter;
+}
+
+.text-container {
+    
+    &.square {
+        display: inline-block;
+        text-align: center;
+        color: #fff;
+        width: 62px;
+        height: 20px;
+        line-height: 22px;
+        text-transform: uppercase;
+        border-radius: 3px;
+    }
+}
+
+$orange: #ffb63b;
+$yellow: #ffdf3f;
+$purple: #aa84fe;
+$green: #85c97e;
+$light-green: #8ef313;
+$blue: #168fe2;
+$dark-blue: #13507f;
+$black: #282828;
+$brown: #be2e16;
+
+md-checkbox {
+    &.orange .md-icon {
+        border-color: $orange;
+    }
+    &.yellow .md-icon {
+        border-color: $yellow;
+    }
+    &.purple .md-icon {
+        border-color: $purple;
+    }
+    &.green .md-icon {
+        border-color: $green;
+    }
+    &.light-green .md-icon {
+        border-color: $light-green;
+    }
+    &.blue .md-icon {
+        border-color: $blue;
+    }
+    &.dark-blue .md-icon {
+        border-color: $dark-blue;
+    }
+    &.black .md-icon {
+        border-color: $black;
+    }
+    &.brown .md-icon {
+        border-color: $brown;
+    }
+}
+
+md-checkbox.md-default-theme.md-checked {
+    
+    &.orange .md-icon {
+        background: $orange;
+    }
+    &.yellow .md-icon {
+        background: $yellow;
+    }
+    &.purple .md-icon {
+        background: $purple;
+    }
+    &.green .md-icon {
+        background: $green;
+    }
+    &.light-green .md-icon {
+        background: $light-green;
+    }
+    &.blue .md-icon {
+        background: $blue;
+    }
+    &.dark-blue .md-icon {
+        background: $dark-blue;
+    }
+    &.black .md-icon {
+        background: $black;
+    }
+    &.brown .md-icon {
+        background: $brown;
+    }
+}
+
+.drop-box-container {
+    
+    margin-bottom: 40px;
+    
+    & .drop-box {
+    
+        width: 75px;
+        height: 70px;
+        color: #FFFFFF;
+        position: relative;
+
+        & .circle {
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            background: $gray-light;
+            border: 2px solid #FFFFFF;
+            position: absolute;
+            right: -25%;
+            top: -25%;
+        }
+
+        &.dragover .circle {
+            right: -34%;
+            top: -34%;
+        }
+
+        &.dragover {
+            background: $gray-lighter !important;
+            border: 4px dashed #DDD;
+        }
+    }
+
+    & .drop-box-wraper {
+        display:inline-block;
+        width: 90px;
+        height: 90px;
+    }
+}
+
+.form-type.not-active {
+    
+    background-color: $gray-lighter !important;
+}
+
+input[type="file"] {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+    z-index: 100 !important;
+    margin-top: -20px !important;
+    padding-top: -20px !important;
+    top: -20px;
+}
+
+md-dialog md-dialog-content section .title {
+    background-color: #dadada;
+    margin: 0;
+    padding: 0.6em 1.2em;
+}
+
+.double-chevron {
+    width: 7px;
+    font-size: 34px;
+    
+    &.left {
+        margin-left: -26px;
+    }
+}
+
+.double-expand {
+    height: 8px;
+    font-size: 34px;
+    margin-top: -32px;
+    
+    &.bottom {
+        margin-top: -85px;
+        margin-left: -4px;
+    }
+}
+
+.title-list {
+    background-color: #dadada;
+    margin: 0;
+    height: 16px;
+    padding: 1px;
+    color: white;
+}
+
+md-list-item.event {
+    padding: 0;
+    width: auto;
+    box-sizing: border-box;
+}
+
+.list-title {
+    color: #c0ca33;
+}

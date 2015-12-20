@@ -1,0 +1,4 @@
+{ 	"name": "staging",
+	"website": "www.www.com",
+	"api": { "url": "https://api.project.com/api/" } 
+}

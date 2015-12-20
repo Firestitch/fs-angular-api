@@ -1,0 +1,16 @@
+{
+  "name": "fs-angular-modal",
+  "description": "",
+  "main": [
+    "dist/modal.js"
+  ],
+  "authors": [
+    "Firestitch Inc."
+  ],
+  "license": "MIT",
+  "ignore": [
+    "src",
+    ".gitignore"
+  ],
+  "private": false
+}
