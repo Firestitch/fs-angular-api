@@ -65,7 +65,7 @@ module.exports = function(grunt) {
                 ngtemplates: {                   
                     app: {
                         options: {
-                            module: 'fs-angular-modal',
+                            module: 'fs-angular-api',
                         },
                         cwd:        'app',
                         src:        'views/directives/directive.html',
@@ -79,7 +79,7 @@ module.exports = function(grunt) {
                     },
                     build: {
                       src: ['app/scripts/modules/module.js','app/scripts/filters/filter.js','app/scripts/directives/directive.js','app/scripts/services/service.js','.tmp/directivetemplate.js'],
-                      dest: '../dist/modal.js',
+                      dest: '../dist/api.js',
                     },
                 },
 

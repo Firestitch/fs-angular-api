@@ -107,16 +107,19 @@
              * @ngdoc method
              * @name send
              * @methodOf fs-angular-api.services:fsApi
-             * @param {string} The HTTP method POST, PUT, GET, DELETE 
+             * @param {string} method The HTTP method POST, PUT, GET, DELETE 
              * @param {string} endpoint The path that is appened to the options.url
              * @param {object} data The post data
              * @param {object=} options Optional arguments that override the defaults 
              * @param {string} options.url The base URL of the API
              * @param {string} options.encoding The encoding of the request (url, json, formdata)
              * @param {integer} options.timeout The number of milliseconds until the request timesout
-             * @param {string} options.dataKey The key that represents the the data object in the response             
-             */  
-
+             * @param {string} options.dataKey The key that represents the the data object in the response
+             * @param {object} options.apply After the request is compelte apply a callback function to targeted data
+             * @param {function} options.apply.function The apply callback function. The target object is passed as the first parameter
+             * @param {string} options.apply.key Specifies that they key in the data object that is to be targeted
+             * @param {string} [options.apply.array=false] Specifies that they target data is an array
+             */
             function send(method, endpoint, data, options) {
 
                 options = angular.extend({}, provider.options(), options || {});
