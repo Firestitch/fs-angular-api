@@ -1,8 +1,8 @@
 {
-  "name": "fs-angular-modal",
+  "name": "fs-angular-api",
   "description": "",
   "main": [
-    "dist/modal.js"
+    "dist/api.js"
   ],
   "authors": [
     "Firestitch Inc."
