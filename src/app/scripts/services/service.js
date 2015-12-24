@@ -37,7 +37,7 @@
             this._options[name] = value;
         }
 
-        this.$get = function ($http, $httpParamSerializer, sessionService, alertService, $location) {
+        this.$get = function ($http, $httpParamSerializer) {
 
             return {
                     get: get,

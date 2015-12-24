@@ -1,20 +1,20 @@
 (function () {
-    'use strict';
-    
-	angular.module('fs-angular-api',[]);
+    'use strict';
+    
+	angular.module('fs-angular-api',[]);
 
-})();
-(function () {
-    'use strict';
-
-
-})();
-(function () {
-    'use strict';
+})();
+(function () {
+    'use strict';
 
 
-})();
-(function () {
+})();
+(function () {
+    'use strict';
+
+
+})();
+(function () {
     'use strict';
 
     /**
@@ -53,7 +53,7 @@
             this._options[name] = value;
         }
 
-        this.$get = function ($http, $httpParamSerializer, sessionService, alertService, $location) {
+        this.$get = function ($http, $httpParamSerializer, $location) {
 
             return {
                     get: get,
@@ -293,12 +293,13 @@
     });
 
 })();
+
+angular.module('fs-angular-api').run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('views/directives/directive.html',
+    ""
+  );
+
+}]);
 
-angular.module('fs-angular-api').run(['$templateCache', function($templateCache) {
-  'use strict';
-
-  $templateCache.put('views/directives/directive.html',
-    ""
-  );
-
-}]);
