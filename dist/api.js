@@ -1,20 +1,20 @@
 (function () {
-    'use strict';
-    
-	angular.module('fs-angular-api',[]);
+    'use strict';
+    
+	angular.module('fs-angular-api',[]);
 
-})();
-(function () {
-    'use strict';
-
-
-})();
-(function () {
-    'use strict';
+})();
+(function () {
+    'use strict';
 
 
-})();
-(function () {
+})();
+(function () {
+    'use strict';
+
+
+})();
+(function () {
     'use strict';
 
     /**
@@ -53,7 +53,7 @@
             this._options[name] = value;
         }
 
-        this.$get = function ($http, $httpParamSerializer, $location) {
+        this.$get = function ($http, $httpParamSerializer) {
 
             return {
                     get: get,
@@ -61,9 +61,14 @@
                     post: post,
                     put: put,
                     'delete': deleted,
-                    on: on
+                    on: on,
+                    options: options
                 };      
-        
+    
+            function options(defaults, overrides) {
+                overrides = overrides || {};
+                return angular.extend(defaults,overrides);
+            }            
 
             function params(data) {
                 return '?' + $httpParamSerializer(data);
@@ -148,10 +153,11 @@
                     headers['Content-Type'] = 'text/json';
 
                 } else if(options.encoding=='formdata') {
-                    
+                    headers['Content-Type'] = undefined;
+                    options.transformRequest = angular.identity;
                     var fd = new FormData();
                     angular.forEach(data, function(item, key) {
-                        fd.append(key, item);
+                        fd.append(key, item, item.name);
                     })
 
                     data = fd;
@@ -293,13 +299,11 @@
     });
 
 })();
+angular.module('fs-angular-api').run(['$templateCache', function($templateCache) {
+  'use strict';
 
-angular.module('fs-angular-api').run(['$templateCache', function($templateCache) {
-  'use strict';
+  $templateCache.put('views/directives/directive.html',
+    ""
+  );
 
-  $templateCache.put('views/directives/directive.html',
-    ""
-  );
-
-}]);
-
+}]);
