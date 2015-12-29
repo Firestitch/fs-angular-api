@@ -2,8 +2,11 @@
 
 
 angular.module('app')
-  .controller('DemoCtrl', function ($scope, DummyService) {
+  .controller('DemoCtrl', function ($scope, DummyService, fsApi) {
 
-    $scope.date = new Date();
+    	
+    	fsApi.post('/somewhere', {}, { headers: { 'Api-Key': '7234987sdtf8345rtgasyhd' }})
+
+
 });
 

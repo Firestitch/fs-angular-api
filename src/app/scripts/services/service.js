@@ -11,7 +11,7 @@
         var provider = this;
 
         this._options = {   url: null,
-                            timeout: 10000,
+                            timeout: 30000,
                             encoding: 'json',
                             dataKey: 'data',
                             events: {
@@ -128,7 +128,7 @@
             function send(method, endpoint, data, options) {
 
                 options = angular.extend({}, provider.options(), options || {});
-                var headers = {};
+                var headers = options.headers || {};
 
                 if(options.encoding=='url') {
                     headers['Content-Type'] = 'application/x-www-form-urlencoded';
