@@ -1,20 +1,20 @@
 (function () {
-    'use strict';
-    
-	angular.module('fs-angular-api',[]);
+    'use strict';
+    
+	angular.module('fs-angular-api',[]);
 
-})();
-(function () {
-    'use strict';
-
-
-})();
-(function () {
-    'use strict';
+})();
+(function () {
+    'use strict';
 
 
-})();
-(function () {
+})();
+(function () {
+    'use strict';
+
+
+})();
+(function () {
     'use strict';
 
     /**
@@ -157,7 +157,7 @@
                     options.transformRequest = angular.identity;
                     var fd = new FormData();
                     angular.forEach(data, function(item, key) {
-                        if(item.name)
+                        if(item != null && item.name)
                             fd.append(key, item, item.name);
                         else
                             fd.append(key, item);
@@ -302,12 +302,11 @@
     });
 
 })();
-angular.module('fs-angular-api').run(['$templateCache', function($templateCache) {
-  'use strict';
+angular.module('fs-angular-api').run(['$templateCache', function($templateCache) {
+  'use strict';
 
-  $templateCache.put('views/directives/directive.html',
-    ""
-  );
+  $templateCache.put('views/directives/directive.html',
+    ""
+  );
 
-}]);
-
+}]);
