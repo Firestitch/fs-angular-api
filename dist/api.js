@@ -1,20 +1,20 @@
 (function () {
-    'use strict';
-    
-	angular.module('fs-angular-api',[]);
+    'use strict';
+    
+	angular.module('fs-angular-api',[]);
 
-})();
-(function () {
-    'use strict';
-
-
-})();
-(function () {
-    'use strict';
+})();
+(function () {
+    'use strict';
 
 
-})();
-(function () {
+})();
+(function () {
+    'use strict';
+
+
+})();
+(function () {
     'use strict';
 
     /**
@@ -104,7 +104,13 @@
                         var name = key;
 
                         if(namespace && namespace.length) {
-                            name = key + '[' + namespace.join('][') + ']';
+
+                            var _namespace = angular.copy(namespace);
+
+                            _namespace.push(key);
+
+                            var root = _namespace.shift();
+                            name = root + '[' + _namespace.join('][') + ']';
                         }
 
                         data.push(name + "=" + encodeURIComponent(value));
@@ -343,11 +349,12 @@
     });
 
 })();
-angular.module('fs-angular-api').run(['$templateCache', function($templateCache) {
-  'use strict';
+angular.module('fs-angular-api').run(['$templateCache', function($templateCache) {
+  'use strict';
 
-  $templateCache.put('views/directives/directive.html',
-    ""
-  );
+  $templateCache.put('views/directives/directive.html',
+    ""
+  );
 
-}]);
+}]);
+

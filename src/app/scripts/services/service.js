@@ -88,7 +88,13 @@
                         var name = key;
 
                         if(namespace && namespace.length) {
-                            name = key + '[' + namespace.join('][') + ']';
+
+                            var _namespace = angular.copy(namespace);
+
+                            _namespace.push(key);
+
+                            var root = _namespace.shift();
+                            name = root + '[' + _namespace.join('][') + ']';
                         }
 
                         data.push(name + "=" + encodeURIComponent(value));
