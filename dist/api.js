@@ -71,8 +71,49 @@
             }            
 
             function params(data) {
-                return '?' + $httpParamSerializer(data);
+                
+                if(!data) {
+                    return '';
+                }
+
+                return '?' + encode(data).join('&');
             }
+
+            function encode(obj,data,namespace) {
+
+                if(!data) {
+                    data = [];
+                }
+
+                angular.forEach(obj,function(value, key) {
+
+                    if(typeof value == 'object') {
+
+                        if(!namespace) {
+                            namespace = [];
+                        }
+
+                        var _namespace = angular.copy(namespace);
+
+                        _namespace.push(key);
+
+                        encode(value,data,_namespace);
+
+                    } else {
+
+                        var name = key;
+
+                        if(namespace && namespace.length) {
+                            name = key + '[' + namespace.join('][') + ']';
+                        }
+
+                        data.push(name + "=" + encodeURIComponent(value));
+                    }
+                });
+
+                return data;
+            }
+
 
             /**
              * @ngdoc method
