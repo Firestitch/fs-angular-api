@@ -182,7 +182,7 @@
                     options.transformRequest = angular.identity;
                     var fd = new FormData();
                     angular.forEach(data, function(item, key) {
-                        if(item.name)
+                        if(item != null && item.name)
                             fd.append(key, item, item.name);
                         else
                             fd.append(key, item);
