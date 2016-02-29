@@ -167,8 +167,8 @@
              * @param {string} endpoint The path that is appened to the options.url
              * @param {object=} options Optional arguments that override the defaults 
              */  
-            function deleted(endpoint, options) {
-                return send('DELETE',endpoint, {}, options);
+            function deleted(endpoint, data, options) {
+                return send('DELETE',endpoint, data, options);
             }
 
             /**
