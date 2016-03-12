@@ -37,8 +37,9 @@
             this._options[name] = value;
         }
 
-        this.$get = function ($http) {
+        this.$get = function ($http, $httpParamSerializer) {
 
+            var events = [];
             return {
                     get: get,
                     gets: get,
@@ -256,9 +257,7 @@
             }
 
             function begin(data,headers,options) {
-                if(options.events.begin) {
-                    options.events.begin(data,headers,options);
-                }
+                runEvents('begin', options, [ data, headers, options ]);
             }
 
             function success(response, options) {
@@ -272,19 +271,13 @@
                     data = data[options.key];
                 }
 
-                var events = provider.option('events');
-                if(events.success) {
-                    events.success(response);
-                }
+                runEvents('success', options, [ response, options ]);
 
                 return data;
             }
 
             function complete(response, options) {
-                var events = provider.option('events');
-                if(events.complete) {
-                    events.complete(response,options);
-                }
+                runEvents('success', options, [ response, options ]);
             }
 
             function fail(response, options) {
@@ -303,14 +296,26 @@
                     throw response;
                 }
 
-                var events = provider.option('events');
-                if(events.fail) {
-                    events.fail(response);
-                }
+                runEvents('fail', options, [ response, options ]);
 
                 throw response;
             }
+            
+            function runEvents(type,options,data) {
+                
+                angular.forEach(events,function(event) {
+                    if(event.type==type) {
+                        event.func.apply({}, data);
+                    }
+                });
 
+                var func = options.events[type];
+                if(func) {
+                    func.apply({}, data);
+                }
+
+                return this;
+            } 
 
             /**
              * @ngdoc method
@@ -323,10 +328,8 @@
              * @param {string} events.fail Ajax returns and codes other then the 200 range
              * @param {function} function The callback function for the event
              */
-            function on(event, value) {
-                var events = provider.option('events');
-                events[event] = value;
-                var options = provider.option('events', events);
+            function on(event, func) {
+                events.push({ type: event, func: func });
                 return this;
             }            
         };
