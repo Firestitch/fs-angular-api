@@ -1,27 +1,13 @@
+
+
 (function () {
-    'use strict';
-    
-	angular.module('fs-angular-api',[]);
-
-})();
-(function () {
-    'use strict';
-
-
-})();
-(function () {
-    'use strict';
-
-
-})();
-(function () {
     'use strict';
 
     /**
      * @ngdoc interface
      * @name fs-angular-api.services:fsApi
     */
-    angular.module('fs-angular-api')
+    angular.module('fs-angular-api',[])
     .provider('fsApi', function () {
 
         var provider = this;
@@ -279,12 +265,22 @@
             function success(response, options) {
                 var data = response.data;
 
-                if(options.dataKey) {
-                   data = data[options.dataKey];
-                }
+                if(options.datapaging) {
+                   
+                    if (options.key) {
+                        data = { data: data.data[options.key], paging: data.data.paging };
+                    } else {
+                        data = { data: data.data, paging: data.data.paging };
+                    }
 
-                if (options && options.key) {
-                    data = data[options.key];
+                } else {
+                    if(options.dataKey) {
+                       data = data[options.dataKey];
+                    }
+
+                    if (options.key) {
+                        data = data[options.key];
+                    }
                 }
 
                 runEvents('success', options, [ response, options ]);
@@ -350,14 +346,4 @@
             }            
         };
     });
-
 })();
-angular.module('fs-angular-api').run(['$templateCache', function($templateCache) {
-  'use strict';
-
-  $templateCache.put('views/directives/directive.html',
-    ""
-  );
-
-}]);
-
