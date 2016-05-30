@@ -1,4 +1,6 @@
-(function () {
+
+
+(function () {
     'use strict';
 
     /**
@@ -64,15 +66,49 @@
                 return '?' + encode(data).join('&');
             }
 
+            function encodeNamespace(name,namespace) {
+
+                if(namespace && namespace.length) {
+
+                    var _namespace = angular.copy(namespace);
+
+                    _namespace.push(name);
+
+                    var root = _namespace.shift();
+                    return root + '[' + _namespace.join('][') + ']';
+                }
+
+                return name;
+            }
+
             function encode(obj,data,namespace) {
 
                 if(!data) {
                     data = [];
                 }
-
+                
                 angular.forEach(obj,function(value, key) {
 
-                    if(typeof value == 'object') {
+                    if(value instanceof Date) {                        
+
+                        var tzo = -value.getTimezoneOffset(),
+                        dif = tzo >= 0 ? '+' : '-',
+                        pad = function(num) {
+                            var norm = Math.abs(Math.floor(num));
+                            return (norm < 10 ? '0' : '') + norm;
+                        },
+                        date = value.getFullYear() 
+                                + '-' + pad(value.getMonth()+1)
+                                + '-' + pad(value.getDate())
+                                + 'T' + pad(value.getHours())
+                                + ':' + pad(value.getMinutes()) 
+                                + ':' + pad(value.getSeconds()) 
+                                + dif + pad(tzo / 60) 
+                                + ':' + pad(tzo % 60);
+
+                       data.push(encodeNamespace(key, namespace) + "=" + encodeURIComponent(date)); 
+
+                    } else if(typeof value == 'object') {
 
                         if(!namespace) {
                             namespace = [];
@@ -85,20 +121,7 @@
                         encode(value,data,_namespace);
 
                     } else {
-
-                        var name = key;
-
-                        if(namespace && namespace.length) {
-
-                            var _namespace = angular.copy(namespace);
-
-                            _namespace.push(key);
-
-                            var root = _namespace.shift();
-                            name = root + '[' + _namespace.join('][') + ']';
-                        }
-
-                        data.push(name + "=" + encodeURIComponent(value));
+                        data.push(encodeNamespace(key, namespace) + "=" + encodeURIComponent(value));
                     }
                 });
 

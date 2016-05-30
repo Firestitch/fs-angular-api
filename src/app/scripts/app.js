@@ -79,6 +79,4 @@ angular
         fsAlert.error(response.message);
     });
 
-    fsApi.post("endssss",{ test: "!!!!!" });
-
 });

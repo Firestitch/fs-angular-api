@@ -1,4 +1,4 @@
 { 	"name": "local",
 	"website": "http://localhost:9000",
-	"api": { "url": "http://athena.local.firestitch.com/api/" } 
+	"api": { "url": "https://service.firestitch.com/api/" } 
 }
