@@ -335,22 +335,26 @@
 
                 throw response;
             }
-            
+
             function runEvents(type,options,data) {
                 
-                angular.forEach(events,function(event) {
-                    if(event.type==type) {
-                        event.func.apply({}, data);
-                    }
-                });
+                if(options.events===false) {
+                    return this;
+                }
 
-                var func = options.events[type];
-                if(func) {
-                    func.apply({}, data);
+                if(options.events && options.events[type]) {
+                    options.events[type].apply({}, data);
+                } else {
+
+                    angular.forEach(events,function(event) {
+                        if(event.type==type) {
+                            event.func.apply({}, data);
+                        }
+                    });
                 }
 
                 return this;
-            } 
+            }
 
             /**
              * @ngdoc method
