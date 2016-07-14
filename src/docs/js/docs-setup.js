@@ -5,21 +5,11 @@ NG_DOCS={
   "pages": [
     {
       "section": "api",
-      "id": "app.controllers:ListerCtrl",
-      "shortName": "ListerCtrl",
+      "id": "fs-angular-api.services:fsApi",
+      "shortName": "fsApi",
       "type": "interface",
-      "moduleName": "app",
-      "shortDescription": "A factory that allows easy access to the lister directive instance",
-      "keywords": "access allows api app controllers data directive easy factory instance interface lister load loading method triggers"
-    },
-    {
-      "section": "api",
-      "id": "app.directives:lister",
-      "shortName": "lister",
-      "type": "directive",
-      "moduleName": "app",
-      "shortDescription": "",
-      "keywords": "$scope __all access actions api app appened applies array avoid binded box button call callback called class classname click clicked column columns configure contextual corresponds css custom data dataset default directive directives dropdown element entire equal events expecting fetch filter filterable filters function functions greater href html icon input interface item js key label length limit list lister listerinstance load ls-instance ls-options menu number object objects options paging paired parameter parameters passed perform places populate process properties query record records rendering ror row select selection sets side specifies starting supports table table-bordered table-striped text tile title total triggered type type-hint type-hint-array type-hint-function user values variables-matrix"
+      "moduleName": "fs-angular-api",
+      "keywords": "ajax api appened apply arguments array base call callback code codes compelte complete completing data datakey defaults delete encoding endpoint event events fail formdata fs-angular-api function http interface json key method milliseconds number object optional options override parameter passed path post query range represents request response returns send services specifies start string success target targeted timeout timesout type url"
     }
   ],
   "apis": {
@@ -27,7 +17,7 @@ NG_DOCS={
   },
   "html5Mode": false,
   "editExample": true,
-  "startPage": "/",
+  "startPage": "/api",
   "scripts": [
     "angular.min.js"
   ]

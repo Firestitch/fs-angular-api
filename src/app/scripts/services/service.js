@@ -1,5 +1,7 @@
 
 
+
+
 (function () {
     'use strict';
 
@@ -89,24 +91,8 @@
                 
                 angular.forEach(obj,function(value, key) {
 
-                    if(value instanceof Date) {                        
-
-                        var tzo = -value.getTimezoneOffset(),
-                        dif = tzo >= 0 ? '+' : '-',
-                        pad = function(num) {
-                            var norm = Math.abs(Math.floor(num));
-                            return (norm < 10 ? '0' : '') + norm;
-                        },
-                        date = value.getFullYear() 
-                                + '-' + pad(value.getMonth()+1)
-                                + '-' + pad(value.getDate())
-                                + 'T' + pad(value.getHours())
-                                + ':' + pad(value.getMinutes()) 
-                                + ':' + pad(value.getSeconds()) 
-                                + dif + pad(tzo / 60) 
-                                + ':' + pad(tzo % 60);
-
-                       data.push(encodeNamespace(key, namespace) + "=" + encodeURIComponent(date)); 
+                    if(value instanceof Date) {
+                       data.push(encodeNamespace(key, namespace) + "=" + encodeURIComponent(iso8601(value))); 
 
                     } else if(typeof value == 'object') {
 
@@ -179,6 +165,25 @@
                 return send('DELETE',endpoint, data, options);
             }
 
+            function iso8601(date) {
+
+                var tzo = -date.getTimezoneOffset(),
+                dif = tzo >= 0 ? '+' : '-',
+                pad = function(num) {
+                    var norm = Math.abs(Math.floor(num));
+                    return (norm < 10 ? '0' : '') + norm;
+                };
+                
+                return date.getFullYear() 
+                        + '-' + pad(date.getMonth()+1)
+                        + '-' + pad(date.getDate())
+                        + 'T' + pad(date.getHours())
+                        + ':' + pad(date.getMinutes()) 
+                        + ':' + pad(date.getSeconds()) 
+                        + dif + pad(tzo / 60) 
+                        + ':' + pad(tzo % 60);
+            }
+
             /**
              * @ngdoc method
              * @name send
@@ -200,7 +205,7 @@
 
                 options = angular.extend({}, provider.options(), options || {});
                 var headers = options.headers || {};
-
+             
                 if(options.encoding=='url') {
                     headers['Content-Type'] = 'application/x-www-form-urlencoded';
              
