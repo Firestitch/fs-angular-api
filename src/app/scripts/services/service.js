@@ -6,8 +6,8 @@
     'use strict';
 
     /**
-     * @ngdoc interface
-     * @name fs-angular-api.services:fsApi
+     * @ngdoc service
+     * @name app.services:fsApi
     */
     angular.module('fs-angular-api',[])
     .provider('fsApi', function () {
@@ -118,7 +118,7 @@
             /**
              * @ngdoc method
              * @name get
-             * @methodOf fs-angular-api.services:fsApi
+             * @methodOf app.services:fsApi
              * @param {string} endpoint The path that is appened to the options.url
              * @param {object} data The query string data
              * @param {object=} options Optional arguments that override the defaults 
@@ -133,7 +133,7 @@
             /**
              * @ngdoc method
              * @name post
-             * @methodOf fs-angular-api.services:fsApi
+             * @methodOf app.services:fsApi
              * @param {string} endpoint The path that is appened to the options.url
              * @param {object} data The post data
              * @param {object=} options Optional arguments that override the defaults 
@@ -145,7 +145,7 @@
             /**
              * @ngdoc method
              * @name put
-             * @methodOf fs-angular-api.services:fsApi
+             * @methodOf app.services:fsApi
              * @param {string} endpoint The path that is appened to the options.url
              * @param {object} data The post data
              * @param {object=} options Optional arguments that override the defaults 
@@ -157,7 +157,7 @@
             /**
              * @ngdoc method
              * @name delete
-             * @methodOf fs-angular-api.services:fsApi
+             * @methodOf app.services:fsApi
              * @param {string} endpoint The path that is appened to the options.url
              * @param {object=} options Optional arguments that override the defaults 
              */  
@@ -187,7 +187,7 @@
             /**
              * @ngdoc method
              * @name send
-             * @methodOf fs-angular-api.services:fsApi
+             * @methodOf app.services:fsApi
              * @param {string} method The HTTP method POST, PUT, GET, DELETE 
              * @param {string} endpoint The path that is appened to the options.url
              * @param {object} data The post data
@@ -362,7 +362,7 @@
             /**
              * @ngdoc method
              * @name on
-             * @methodOf fs-angular-api.services:fsApi
+             * @methodOf app.services:fsApi
              * @param {string} events Specifies event type 
              * @param {string} events.begin The start of ajax call
              * @param {string} events.success Ajax returns code in the 200 range
