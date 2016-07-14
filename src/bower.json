@@ -1,6 +1,6 @@
 {
   "name": "fs-angular-api",
-  "namespace": "lister",
+  "namespace": "api",
   "port": "5020",  
   "moduleName": "app",
   "version": "0.0.0",
