@@ -1,11 +1,6 @@
 
 
-
-
-
-
-
-(function () {
+(function() {
 
     'use strict';
 
@@ -20,33 +15,35 @@
      * interact with REST API servers in a simple and convenient way.
      */
 
-    angular.module('fs-angular-api',[])
+    angular.module('fs-angular-api', [])
 
-    .provider('fsApi', function () {
+    .provider('fsApi', function() {
 
 
         var provider = this;
 
 
-        this._options = {   url: null,
+        this._options = {
+            url: null,
 
-                            timeout: 30000,
+            timeout: 30000,
 
-                            encoding: 'json',
+            encoding: 'json',
 
-                            dataKey: 'data',
+            dataKey: 'data',
 
-                            events: {
+            events: {
 
-                                begin: null,
+                begin: null,
 
-                                success: null,
+                success: null,
 
-                                complete: null,
+                complete: null,
 
-                                fail: null
+                fail: null
 
-                            } };
+            }
+        };
 
 
         /**
@@ -101,12 +98,12 @@
         this.options = function(options) {
 
 
-            if(!arguments.length)
+            if (!arguments.length)
 
                 return this._options;
 
 
-            this._options = angular.merge({},this._options,options);
+            this._options = angular.merge({}, this._options, options);
 
         }
 
@@ -135,7 +132,7 @@
         this.option = function(name, value) {
 
 
-             if(arguments.length==1)
+            if (arguments.length == 1)
 
                 return this._options[arguments[0]];
 
@@ -159,28 +156,28 @@
          * - {@link app.services:fsApi#methods_put `put`}
          * - {@link app.services:fsApi#methods_delete `delete`}
          */
-        this.$get = function ($http, $httpParamSerializer) {
+        this.$get = function($http, $httpParamSerializer) {
 
 
             var events = [];
 
             return {
 
-                    get: get,
+                get: get,
 
-                    gets: get,
+                gets: get,
 
-                    post: post,
+                post: post,
 
-                    put: put,
+                put: put,
 
-                    'delete': deleted,
+                'delete': deleted,
 
-                    on: on,
+                on: on,
 
-                    options: options
+                options: options
 
-                };      
+            };
 
 
             /**
@@ -200,16 +197,16 @@
 
                 overrides = overrides || {};
 
-                return angular.extend(defaults,overrides);
+                return angular.extend(defaults, overrides);
 
-            }            
+            }
 
 
             function params(data) {
 
-                
 
-                if(!data) {
+
+                if (!data) {
 
                     return '';
 
@@ -221,10 +218,10 @@
             }
 
 
-            function encodeNamespace(name,namespace) {
+            function encodeNamespace(name, namespace) {
 
 
-                if(namespace && namespace.length) {
+                if (namespace && namespace.length) {
 
 
                     var _namespace = angular.copy(namespace);
@@ -245,29 +242,29 @@
             }
 
 
-            function encode(obj,data,namespace) {
+            function encode(obj, data, namespace) {
 
 
-                if(!data) {
+                if (!data) {
 
                     data = [];
 
                 }
 
-                
-
-                angular.forEach(obj,function(value, key) {
 
 
-                    if(value instanceof Date) {
-
-                       data.push(encodeNamespace(key, namespace) + "=" + encodeURIComponent(iso8601(value))); 
+                angular.forEach(obj, function(value, key) {
 
 
-                    } else if(typeof value == 'object') {
+                    if (value instanceof Date) {
+
+                        data.push(encodeNamespace(key, namespace) + "=" + encodeURIComponent(iso8601(value)));
 
 
-                        if(!namespace) {
+                    } else if (typeof value == 'object') {
+
+
+                        if (!namespace) {
 
                             namespace = [];
 
@@ -280,7 +277,7 @@
                         _namespace.push(key);
 
 
-                        encode(value,data,_namespace);
+                        encode(value, data, _namespace);
 
 
                     } else {
@@ -338,7 +335,7 @@
                 endpoint = endpoint + params(data);
 
 
-                return send('GET',endpoint, data, options);
+                return send('GET', endpoint, data, options);
 
             }
 
@@ -360,11 +357,11 @@
              * 
              * @param {object=} options Optional arguments that override the defaults. See the details about avail config
              * options  in {@link app.services:fsApi#methods_send `send()`} method.
-             */            
+             */
 
             function post(endpoint, data, options) {
 
-                return send('POST',endpoint, data, options);
+                return send('POST', endpoint, data, options);
 
             }
 
@@ -386,11 +383,11 @@
              * 
              * @param {object=} options Optional arguments that override the defaults. See the details about avail config
              * options  in {@link app.services:fsApi#methods_send `send()`} method.
-             */  
+             */
 
             function put(endpoint, data, options) {
 
-                return send('PUT',endpoint, data, options);
+                return send('PUT', endpoint, data, options);
 
             }
 
@@ -410,11 +407,11 @@
              * 
              * @param {object=} options Optional arguments that override the defaults. See the details about avail config
              * options  in {@link app.services:fsApi#methods_send `send()`} method.
-             */  
+             */
 
             function deleted(endpoint, data, options) {
 
-                return send('DELETE',endpoint, data, options);
+                return send('DELETE', endpoint, data, options);
 
             }
 
@@ -424,33 +421,33 @@
 
                 var tzo = -date.getTimezoneOffset(),
 
-                dif = tzo >= 0 ? '+' : '-',
+                    dif = tzo >= 0 ? '+' : '-',
 
-                pad = function(num) {
+                    pad = function(num) {
 
-                    var norm = Math.abs(Math.floor(num));
+                        var norm = Math.abs(Math.floor(num));
 
-                    return (norm < 10 ? '0' : '') + norm;
+                        return (norm < 10 ? '0' : '') + norm;
 
-                };
+                    };
 
-                
 
-                return date.getFullYear() 
 
-                        + '-' + pad(date.getMonth()+1)
+                return date.getFullYear()
 
-                        + '-' + pad(date.getDate())
+                +'-' + pad(date.getMonth() + 1)
 
-                        + 'T' + pad(date.getHours())
+                + '-' + pad(date.getDate())
 
-                        + ':' + pad(date.getMinutes()) 
+                + 'T' + pad(date.getHours())
 
-                        + ':' + pad(date.getSeconds()) 
+                + ':' + pad(date.getMinutes())
 
-                        + dif + pad(tzo / 60) 
+                + ':' + pad(date.getSeconds())
 
-                        + ':' + pad(tzo % 60);
+                + dif + pad(tzo / 60)
+
+                + ':' + pad(tzo % 60);
 
             }
 
@@ -498,133 +495,109 @@
 
             function send(method, endpoint, data, options) {
 
-
                 options = angular.extend({}, provider.options(), options || {});
-
                 var headers = options.headers || {};
 
-             
+                var request = angular.copy(data);
+                angular.forEach(request, function(value, key) {
+                    if (moment && moment.isMoment(value)) {
+                        request[key] = value.format();
+                    } else if (value instanceof Date) {
+                        request[key] = iso8601(value);
+                    }
+                });
 
-                if(options.encoding=='url') {
-
+                if (options.encoding == 'url') {
                     headers['Content-Type'] = 'application/x-www-form-urlencoded';
 
-             
-
-                } else if(options.encoding=='json') {
-
+                } else if (options.encoding == 'json') {
                     headers['Content-Type'] = 'text/json';
 
-
-                } else if(options.encoding=='formdata') {
-
+                } else if (options.encoding == 'formdata') {
                     headers['Content-Type'] = undefined;
-
                     options.transformRequest = angular.identity;
-
-                    var fd = new FormData();
-
+                    var request = new FormData();
                     angular.forEach(data, function(item, key) {
-
-                        if(item != null && item.name)
-
-                            fd.append(key, item, item.name);
-
-                        else
-
-                            fd.append(key, item);
-
+                        if (item != null && item.name) {
+                            request.append(key, item, item.name);
+                        } else {
+                            request.append(key, item);
+                        }
                     });
-
-
-                    data = fd;
-
                 }
 
-
-                begin(data,headers,options);
-
-                
+                begin(request, headers, options);
 
                 return $http({
+                    method: method,
+                    url: options.url + endpoint,
+                    headers: headers,
+                    timeout: options.timeout,
+                    data: request,
+                    transformRequest: function(obj) {
 
-                        method: method,
+                        if (options.encoding == 'url') {
 
-                        url: options.url + endpoint,
+                            var str = [];
 
-                        headers: headers,
+                            for (var p in obj)
 
-                        timeout: options.timeout,
+                                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
 
-                        data: data,
-
-                        transformRequest: function(obj) {
-
-
-                            if(options.encoding=='url') {
-
-                                var str = [];
-
-                                for(var p in obj)
-
-                                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-
-                                return str.join("&");
-
-                            
-
-                            } else if(options.encoding=='json') {
-
-                                obj = JSON.stringify(obj);
-
-                            }
+                            return str.join("&");
 
 
-                            return obj;
+
+                        } else if (options.encoding == 'json') {
+
+                            obj = JSON.stringify(obj);
 
                         }
 
-                    })
 
-                    .then(function (response) {
+                        return obj;
 
+                    }
 
-                        complete(response, options);
+                })
 
-
-                        if(response && options.apply) {
-
-                         
-
-                            if(options.apply.key) {
+                .then(function(response) {
 
 
-                                var object = response.data.data[options.apply.key];
+                    complete(response, options);
 
 
-                                if(options.apply.array) {
-
-                                    
-
-                                    if(object && object.length) {
-
-                                        angular.forEach(object,function(item) {
-
-                                            item = options.apply.function(item);
-
-                                        });
-
-                                    }
+                    if (response && options.apply) {
 
 
-                                } else {
+
+                        if (options.apply.key) {
 
 
-                                    if(object) {
+                            var object = response.data.data[options.apply.key];
 
-                                        response.data.data[options.apply.key] = options.apply.function(object);
 
-                                    }
+                            if (options.apply.array) {
+
+
+
+                                if (object && object.length) {
+
+                                    angular.forEach(object, function(item) {
+
+                                        item = options.apply.function(item);
+
+                                    });
+
+                                }
+
+
+                            } else {
+
+
+                                if (object) {
+
+                                    response.data.data[options.apply.key] = options.apply.function(object);
 
                                 }
 
@@ -632,25 +605,27 @@
 
                         }
 
+                    }
 
-                        return success(response, options);
 
-                    })
+                    return success(response, options);
 
-                    .catch(function (response) {
+                })
 
-                        complete(response, options);
+                .catch(function(response) {
 
-                        fail(response, options);
+                    complete(response, options);
 
-                    });
+                    fail(response, options);
+
+                });
 
             }
 
 
-            function begin(data,headers,options) {
+            function begin(data, headers, options) {
 
-                runEvents('begin', options, [ data, headers, options ]);
+                runEvents('begin', options, [data, headers, options]);
 
             }
 
@@ -660,9 +635,9 @@
                 var data = response.data;
 
 
-                if(options.datapaging) {
+                if (options.datapaging) {
 
-                   
+
 
                     if (options.key) {
 
@@ -677,9 +652,9 @@
 
                 } else {
 
-                    if(options.dataKey) {
+                    if (options.dataKey) {
 
-                       data = data[options.dataKey];
+                        data = data[options.dataKey];
 
                     }
 
@@ -693,7 +668,7 @@
                 }
 
 
-                runEvents('success', options, [ response, options ]);
+                runEvents('success', options, [response, options]);
 
 
                 return data;
@@ -703,7 +678,7 @@
 
             function complete(response, options) {
 
-                runEvents('success', options, [ response, options ]);
+                runEvents('success', options, [response, options]);
 
             }
 
@@ -714,16 +689,18 @@
                 var message = "Connection issue";
 
 
-                if(response.data && response.data.message)
+                if (response.data && response.data.message)
 
                     message = response.data.message;
 
 
-                response = {    message: message,
+                response = {
+                    message: message,
 
-                                code: response.status,
+                    code: response.status,
 
-                                response: response };
+                    response: response
+                };
 
 
                 // no error handling required, simply return the message
@@ -735,7 +712,7 @@
                 }
 
 
-                runEvents('fail', options, [ response, options ]);
+                runEvents('fail', options, [response, options]);
 
 
                 throw response;
@@ -743,27 +720,27 @@
             }
 
 
-            function runEvents(type,options,data) {
+            function runEvents(type, options, data) {
 
-                
 
-                if(options.events===false) {
+
+                if (options.events === false) {
 
                     return this;
 
                 }
 
 
-                if(options.events && options.events[type]) {
+                if (options.events && options.events[type]) {
 
                     options.events[type].apply({}, data);
 
                 } else {
 
 
-                    angular.forEach(events,function(event) {
+                    angular.forEach(events, function(event) {
 
-                        if(event.type==type) {
+                        if (event.type == type) {
 
                             event.func.apply({}, data);
 
@@ -806,10 +783,11 @@
 
                 return this;
 
-            }            
+            }
 
         };
 
     });
 
 })();
+
