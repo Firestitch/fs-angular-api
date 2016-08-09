@@ -6,9 +6,9 @@
     /**
      * @ngdoc service
      * 
-     * @name services.fsApiProvider
+     * @name fs.fsApiProvider
      * @description
-     * This provider is a wrapper around built in $http that provides {@link services.fsApi service} that allows to
+     * This provider is a wrapper around built in $http that provides {@link fs.fsApi service} that allows to
      * interact with REST API servers in a simple and convenient way.
      */
 
@@ -46,9 +46,9 @@
         /**
          * @ngdoc method
          * 
-         * @name services.fsApiProvider#options
+         * @name fs.fsApiProvider#options
          *  
-         * @methodOf services.fsApiProvider
+         * @methodOf fs.fsApiProvider
          *
          * @description
          * Allows you to preliminary configure all instances returned by provider.
@@ -108,15 +108,15 @@
         /**
          * @ngdoc method
          * 
-         * @name services.fsApiProvider#option
+         * @name fs.fsApiProvider#option
          *  
-         * @methodOf services.fsApiProvider
+         * @methodOf fs.fsApiProvider
          *
          * @description
          * Getter/Setter. Provides ability either to obtain value of specified config property or set it (if second arg
          * is provided)
          *
-         * @param {string} name The name of config property. See {@link services.fsApiProvider#methods_options `options`}
+         * @param {string} name The name of config property. See {@link fs.fsApiProvider#methods_options `options`}
          * for avail properties.
          * 
          * @param {*} value The value to assign to config property
@@ -141,17 +141,17 @@
 
         /**
          * @ngdoc service
-         * @name services.fsApi
+         * @name fs.fsApi
          *
          * @description
-         * An instance of {@link services.fsApiProvider fsApiProvider}. The service exposes the following methods:
+         * An instance of {@link fs.fsApiProvider fsApiProvider}. The service exposes the following methods:
          * 
-         * - {@link services.fsApi#methods_options `options`}
-         * - {@link services.fsApi#methods_send `send`}
-         * - {@link services.fsApi#methods_get `get`}
-         * - {@link services.fsApi#methods_post `post`}
-         * - {@link services.fsApi#methods_put `put`}
-         * - {@link services.fsApi#methods_delete `delete`}
+         * - {@link fs.fsApi#methods_options `options`}
+         * - {@link fs.fsApi#methods_send `send`}
+         * - {@link fs.fsApi#methods_get `get`}
+         * - {@link fs.fsApi#methods_post `post`}
+         * - {@link fs.fsApi#methods_put `put`}
+         * - {@link fs.fsApi#methods_delete `delete`}
          */
         this.$get = function($http, $httpParamSerializer) {
 
@@ -182,7 +182,7 @@
              * 
              * @name options
              * 
-             * @methodOf services.fsApi
+             * @methodOf fs.fsApi
              * 
              * @param {object} defaults The defaults
              * 
@@ -298,7 +298,7 @@
              * 
              * @name get
              * 
-             * @methodOf services.fsApi
+             * @methodOf fs.fsApi
              * 
              * @description
              * sends GET http request to specified endpoint
@@ -308,7 +308,7 @@
              * @param {object} data The query string data
              * 
              * @param {object=} options Optional arguments that override the defaults. See the details about avail config
-             * options  in {@link services.fsApi#methods_send `send()`} method.
+             * options  in {@link fs.fsApi#methods_send `send()`} method.
              * 
              * @example
              * <pre>
@@ -343,7 +343,7 @@
              * 
              * @name post
              * 
-             * @methodOf services.fsApi
+             * @methodOf fs.fsApi
              * 
              * @description
              * sends POST http request to specified endpoint
@@ -353,7 +353,7 @@
              * @param {object} data The post data
              * 
              * @param {object=} options Optional arguments that override the defaults. See the details about avail config
-             * options  in {@link services.fsApi#methods_send `send()`} method.
+             * options  in {@link fs.fsApi#methods_send `send()`} method.
              */
 
             function post(endpoint, data, options) {
@@ -369,7 +369,7 @@
              * 
              * @name put
              * 
-             * @methodOf services.fsApi
+             * @methodOf fs.fsApi
              * 
              * @description
              * sends PUT http request to specified endpoint
@@ -379,7 +379,7 @@
              * @param {object} data The post data
              * 
              * @param {object=} options Optional arguments that override the defaults. See the details about avail config
-             * options  in {@link services.fsApi#methods_send `send()`} method.
+             * options  in {@link fs.fsApi#methods_send `send()`} method.
              */
 
             function put(endpoint, data, options) {
@@ -395,7 +395,7 @@
              * 
              * @name delete
              * 
-             * @methodOf services.fsApi
+             * @methodOf fs.fsApi
              * 
              * @description
              * sends DELETE http request to specified endpoint
@@ -403,7 +403,7 @@
              * @param {string} endpoint The path that is appened to the options.url
              * 
              * @param {object=} options Optional arguments that override the defaults. See the details about avail config
-             * options  in {@link services.fsApi#methods_send `send()`} method.
+             * options  in {@link fs.fsApi#methods_send `send()`} method.
              */
 
             function deleted(endpoint, data, options) {
@@ -455,7 +455,7 @@
              * 
              * @name send
              * 
-             * @methodOf services.fsApi
+             * @methodOf fs.fsApi
              * 
              * @param {string} method The HTTP method POST, PUT, GET, DELETE 
              * 
@@ -759,7 +759,7 @@
              * 
              * @name on
              * 
-             * @methodOf services.fsApi
+             * @methodOf fs.fsApi
              * 
              * @param {string} events Specifies event type 
              * 
