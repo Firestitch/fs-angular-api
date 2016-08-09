@@ -1,7 +1,7 @@
 {
   "name": "fs-angular-api",
   "namespace": "api",
-  "port": "5020",  
+  "port": "5025",  
   "moduleName": "app",
   "version": "0.0.0",
   "appPath": "app",
