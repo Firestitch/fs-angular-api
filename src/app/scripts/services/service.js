@@ -5,10 +5,10 @@
 
     /**
      * @ngdoc service
-     *
-     * @name services.fsApiProvider
+     * 
+     * @name fs.fsApiProvider
      * @description
-     * This provider is a wrapper around built in $http that provides {@link services.fsApi service} that allows to
+     * This provider is a wrapper around built in $http that provides {@link fs.fsApi service} that allows to
      * interact with REST API servers in a simple and convenient way.
      */
 
@@ -45,27 +45,27 @@
 
         /**
          * @ngdoc method
-         *
-         * @name services.fsApiProvider#options
-         *
-         * @methodOf services.fsApiProvider
+         * 
+         * @name fs.fsApiProvider#options
+         *  
+         * @methodOf fs.fsApiProvider
          *
          * @description
          * Allows you to preliminary configure all instances returned by provider.
          *
          * @param {object} options The object every property of which represents some aspect of configuration
-         *
+         * 
          * @param {string} options.url The base URL of the API
-         *
+         * 
          * @param {integer} options.timeout The number of milliseconds until the request timesout
-         *
+         * 
          * @param {string} options.encoding The encoding of the request. Avail options:
          * - url
          * - json
          * - formdata
-         *
+         * 
          * @param {string} options.dataKey The key that represents the the data object in the response
-         *
+         * 
          * @param {object} options.events Provides ability to assign custom callback that will be executed on specific
          * stages\phases of ajax request
             <ul>
@@ -107,20 +107,20 @@
 
         /**
          * @ngdoc method
-         *
-         * @name services.fsApiProvider#option
-         *
-         * @methodOf services.fsApiProvider
+         * 
+         * @name fs.fsApiProvider#option
+         *  
+         * @methodOf fs.fsApiProvider
          *
          * @description
          * Getter/Setter. Provides ability either to obtain value of specified config property or set it (if second arg
          * is provided)
          *
-         * @param {string} name The name of config property. See {@link services.fsApiProvider#methods_options `options`}
+         * @param {string} name The name of config property. See {@link fs.fsApiProvider#methods_options `options`}
          * for avail properties.
-         *
+         * 
          * @param {*} value The value to assign to config property
-         *
+         * 
          * @example
          * <pre>
          * fsApiProvider.option('url', 'http://some.webserver.com/api/');
@@ -141,17 +141,17 @@
 
         /**
          * @ngdoc service
-         * @name services.fsApi
+         * @name fs.fsApi
          *
          * @description
-         * An instance of {@link services.fsApiProvider fsApiProvider}. The service exposes the following methods:
-         *
-         * - {@link services.fsApi#methods_options `options`}
-         * - {@link services.fsApi#methods_send `send`}
-         * - {@link services.fsApi#methods_get `get`}
-         * - {@link services.fsApi#methods_post `post`}
-         * - {@link services.fsApi#methods_put `put`}
-         * - {@link services.fsApi#methods_delete `delete`}
+         * An instance of {@link fs.fsApiProvider fsApiProvider}. The service exposes the following methods:
+         * 
+         * - {@link fs.fsApi#methods_options `options`}
+         * - {@link fs.fsApi#methods_send `send`}
+         * - {@link fs.fsApi#methods_get `get`}
+         * - {@link fs.fsApi#methods_post `post`}
+         * - {@link fs.fsApi#methods_put `put`}
+         * - {@link fs.fsApi#methods_delete `delete`}
          */
         this.$get = function($http, $httpParamSerializer) {
 
@@ -179,15 +179,15 @@
 
             /**
              * @ngdoc method
-             *
+             * 
              * @name options
-             *
-             * @methodOf services.fsApi
-             *
+             * 
+             * @methodOf fs.fsApi
+             * 
              * @param {object} defaults The defaults
-             *
+             * 
              * @param {object} overrides The overrides
-             *
+             * 
              * @returns {object} The result of merging overrides into defaults
              */
             function options(defaults, overrides) {
@@ -253,11 +253,7 @@
                 angular.forEach(obj, function(value, key) {
 
 
-                    if (moment && moment.isMoment(value)) {
-
-                        data.push(encodeNamespace(key, namespace) + "=" + encodeURIComponent(value.format()));
-
-                    } else if (value instanceof Date) {
+                    if (value instanceof Date) {
 
                         data.push(encodeNamespace(key, namespace) + "=" + encodeURIComponent(iso8601(value)));
 
@@ -299,21 +295,21 @@
             /**
 
              * @ngdoc method
-             *
+             * 
              * @name get
-             *
-             * @methodOf services.fsApi
-             *
+             * 
+             * @methodOf fs.fsApi
+             * 
              * @description
              * sends GET http request to specified endpoint
-             *
+             * 
              * @param {string} endpoint The path that is appened to the options.url
-             *
+             * 
              * @param {object} data The query string data
-             *
+             * 
              * @param {object=} options Optional arguments that override the defaults. See the details about avail config
-             * options  in {@link services.fsApi#methods_send `send()`} method.
-             *
+             * options  in {@link fs.fsApi#methods_send `send()`} method.
+             * 
              * @example
              * <pre>
                 var config = {
@@ -344,20 +340,20 @@
             /**
 
              * @ngdoc method
-             *
+             * 
              * @name post
-             *
-             * @methodOf services.fsApi
-             *
+             * 
+             * @methodOf fs.fsApi
+             * 
              * @description
              * sends POST http request to specified endpoint
-             *
+             * 
              * @param {string} endpoint The path that is appened to the options.url
-             *
+             * 
              * @param {object} data The post data
-             *
+             * 
              * @param {object=} options Optional arguments that override the defaults. See the details about avail config
-             * options  in {@link services.fsApi#methods_send `send()`} method.
+             * options  in {@link fs.fsApi#methods_send `send()`} method.
              */
 
             function post(endpoint, data, options) {
@@ -370,20 +366,20 @@
             /**
 
              * @ngdoc method
-             *
+             * 
              * @name put
-             *
-             * @methodOf services.fsApi
-             *
+             * 
+             * @methodOf fs.fsApi
+             * 
              * @description
              * sends PUT http request to specified endpoint
-             *
+             * 
              * @param {string} endpoint The path that is appened to the options.url
-             *
+             * 
              * @param {object} data The post data
-             *
+             * 
              * @param {object=} options Optional arguments that override the defaults. See the details about avail config
-             * options  in {@link services.fsApi#methods_send `send()`} method.
+             * options  in {@link fs.fsApi#methods_send `send()`} method.
              */
 
             function put(endpoint, data, options) {
@@ -396,18 +392,18 @@
             /**
 
              * @ngdoc method
-             *
+             * 
              * @name delete
-             *
-             * @methodOf services.fsApi
-             *
+             * 
+             * @methodOf fs.fsApi
+             * 
              * @description
              * sends DELETE http request to specified endpoint
-             *
+             * 
              * @param {string} endpoint The path that is appened to the options.url
-             *
+             * 
              * @param {object=} options Optional arguments that override the defaults. See the details about avail config
-             * options  in {@link services.fsApi#methods_send `send()`} method.
+             * options  in {@link fs.fsApi#methods_send `send()`} method.
              */
 
             function deleted(endpoint, data, options) {
@@ -456,27 +452,27 @@
             /**
 
              * @ngdoc method
-             *
+             * 
              * @name send
-             *
-             * @methodOf services.fsApi
-             *
-             * @param {string} method The HTTP method POST, PUT, GET, DELETE
-             *
+             * 
+             * @methodOf fs.fsApi
+             * 
+             * @param {string} method The HTTP method POST, PUT, GET, DELETE 
+             * 
              * @param {string} endpoint The path that is appened to the options.url
-             *
+             * 
              * @param {object} data The data to send
-             *
-             * @param {object=} options Optional arguments that override the defaults
-             *
+             * 
+             * @param {object=} options Optional arguments that override the defaults 
+             * 
              * @param {string} options.url The base URL of the API
-             *
+             * 
              * @param {string} options.encoding The encoding of the request (url, json, formdata)
-             *
+             * 
              * @param {integer} options.timeout The number of milliseconds until the request timesout
-             *
+             * 
              * @param {string} options.dataKey The key that represents the the data object in the response
-             *
+             * 
              * @param {object} options.apply After the request is compelte apply a callback function to targeted data
                 <ul>
                     <li>
@@ -760,21 +756,21 @@
             /**
 
              * @ngdoc method
-             *
+             * 
              * @name on
-             *
-             * @methodOf services.fsApi
-             *
-             * @param {string} events Specifies event type
-             *
+             * 
+             * @methodOf fs.fsApi
+             * 
+             * @param {string} events Specifies event type 
+             * 
              * @param {string} events.begin The start of ajax call
-             *
+             * 
              * @param {string} events.success Ajax returns code in the 200 range
-             *
+             * 
              * @param {string} events.complete Upon the ajax completing
-             *
+             * 
              * @param {string} events.fail Ajax returns and codes other then the 200 range
-             *
+             * 
              * @param {function} function The callback function for the event
              */
 
