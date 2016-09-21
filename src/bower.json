@@ -1,7 +1,7 @@
 {
   "name": "fs-angular-api",
   "namespace": "api",
-  "port": "5025",  
+  "port": "5025",
   "moduleName": "app",
   "version": "0.0.0",
   "appPath": "app",
@@ -14,5 +14,8 @@
   "devDependencies": {
     "angular-mocks": "1.4.8",
     "angular-scenario": "1.4.8"
+  },
+  "resolutions": {
+    "angular": "1.4.9"
   }
 }
