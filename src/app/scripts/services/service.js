@@ -263,7 +263,7 @@
                         data.push(encodeNamespace(key, namespace) + "=" + encodeURIComponent(iso8601(value)));
 
 
-                    } else if (typeof value == 'object') {
+                    } else if (angular.isObject(value)) {
 
 
                         if (!namespace) {
