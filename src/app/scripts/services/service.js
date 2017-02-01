@@ -17,7 +17,8 @@
 
         this._options = {
             url: null,
-            timeout: 30000,
+            timeout: 60,
+            uploadTimeout: 600,
             encoding: 'json',
             dataKey: 'data',
             events: {
@@ -340,7 +341,15 @@
                 var headers = options.headers || {};
 
                 var request = angular.copy(data);
+                var hasFile = false;
                 sanitize(request);
+
+                angular.forEach(data, function(item, key) {
+                	if(item instanceof File) {
+                		hasFile = true;
+                		options.encoding = 'formdata';
+                	}
+                });
 
                 if (options.encoding == 'url') {
                     headers['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -363,11 +372,13 @@
 
                 begin(request, headers, options);
 
+                var timeout = hasFile ? options.uploadTimeout : options.timeout;
+
                 return $http({
                     method: method,
                     url: options.url + endpoint,
                     headers: headers,
-                    timeout: options.timeout,
+                    timeout: timeout * 1000,
                     data: request,
                     transformRequest: function(obj) {
                         if (options.encoding == 'url') {

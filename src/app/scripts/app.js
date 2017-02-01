@@ -5,7 +5,8 @@ angular
     'config',
     'ngMaterial',
     'fs-angular-api',
-    'ui.router'
+    'ui.router',
+    'ngFileUpload'
 ])
 .config(function ($stateProvider, $urlRouterProvider, fsApiProvider) {
 
@@ -26,11 +27,13 @@ angular
         controller: 'DemoCtrl'
     });
 
-    fsApiProvider.options({ url: 'https://service.firestitch.com/api/' });
+    fsApiProvider.options({ url: 'https://service.firestitch.com/api/',
+    						timeout: 60,
+    						uploadTimeout: 600 });
 })
 .run(function ($rootScope, BOWER, fsApi) {
     $rootScope.app_name = BOWER.name;
-    $rootScope.app_namespace = BOWER.namespace;    
+    $rootScope.app_namespace = BOWER.namespace;
 
     fsApi.on("begin",function(data, headers, options) {
 
