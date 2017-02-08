@@ -347,7 +347,7 @@
                 sanitize(request);
 
                 angular.forEach(data, function(item, key) {
-                	if(item instanceof File) {
+                	if(item instanceof File || item instanceof Blob) {
                 		hasFile = true;
                 		options.encoding = 'formdata';
                 	}
