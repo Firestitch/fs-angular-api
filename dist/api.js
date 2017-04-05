@@ -375,14 +375,17 @@
 
                 begin(request, headers, options);
 
-                var timeout = hasFile ? options.uploadTimeout : options.timeout;
-                var slowTimeout = null;
+                var timeout = options.uploadTimeout;
+	            var slowTimeout = null;
 
-                if(options.slowTimeout) {
-                	slowTimeout = setTimeout(function() {
-	                	fsAlert.info('Your request is still processing, please wait...',{ hideDelay: 0 });
-	                },options.slowTimeout * 1000);
-	            }
+                if(!hasFile) {
+	                timeout = options.timeout;
+	                if(options.slowTimeout) {
+	                	slowTimeout = setTimeout(function() {
+		                	fsAlert.info('Your request is still processing, please wait...',{ hideDelay: 0 });
+		                },options.slowTimeout * 1000);
+		            }
+		        }
 
                 return $http({
                     method: method,
@@ -437,9 +440,7 @@
 
                 })
                 .finally(function() {
-                	if(slowTimeout) {
-                		clearTimeout(slowTimeout);
-                	}
+                	clearTimeout(slowTimeout);
                 });
             }
 
