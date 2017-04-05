@@ -2,8 +2,7 @@
 
 
 angular.module('app')
-.controller('DemoCtrl', function ($scope, DummyService, fsApi) {
-
+.controller('DemoCtrl', function ($scope, DummyService, fsApi, fsAlert) {
 
 	fsApi.get('dummy', { count: 10, date: new Date(), test: undefined }, { headers: { 'Api-Key': '7234987sdtf8345rtgasyhd' }})
 	.then(function(data) {
@@ -24,13 +23,14 @@
 		}
 	}
 
-/*	var data  = { count: 10, date: moment(), object: { date2: moment() } };
+	$scope.sleep = function() {
 
-	fsApi.post('dummy', data, { headers: { 'Api-Key': '7234987sdtf8345rtgasyhd' }})
-	.then(function(data) {
-
-	});*/
-
+		/*setTimeout(function() {
+			fsAlert.success();
+		},6000);
+*/
+		fsApi.get('dummy', { count: 10, date: new Date(), sleep: 8 });
+	}
 });
 
 

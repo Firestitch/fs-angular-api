@@ -6,13 +6,15 @@
   "version": "0.0.0",
   "appPath": "app",
   "dependencies": {
-    "angular": "1.6.1",
-    "angular-material": "1.0.9",
+    "angular": "1.6.3",
+	"angular-material": "1.1.1",
+    "fs-boilerplate-styles": "1.0.10",
     "angular-ui-router": "0.3.2",
     "moment": "2.10.6",
-    "ng-file-upload": "11.0.0"
+    "ng-file-upload": "11.0.0",
+    "fs-angular-alert": "^1.0.0"
   },
   "resolutions": {
-    "angular": "1.6.1"
+    "angular": "1.6.3"
   }
 }

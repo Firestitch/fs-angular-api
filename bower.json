@@ -4,6 +4,10 @@
   "main": [
     "dist/api.js"
   ],
+  "dependencies": {
+    "fs-angular-alert": "^1.0.0",
+    "moment": ">2.10.6",
+  },
   "authors": [
     "Firestitch Inc."
   ],

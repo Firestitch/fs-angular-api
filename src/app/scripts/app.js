@@ -27,7 +27,7 @@ angular
         controller: 'DemoCtrl'
     });
 
-    fsApiProvider.options({ url: 'https://service.firestitch.com/api/',
+    fsApiProvider.options({ url: 'http://boilerplate.local.firestitch.com/api/',
     						timeout: 60,
     						uploadTimeout: 600 });
 })

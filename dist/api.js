@@ -12,7 +12,7 @@
      * interact with REST API servers in a simple and convenient way.
      */
 
-    angular.module('fs-angular-api', [])
+    angular.module('fs-angular-api', ['fs-angular-alert'])
 
     .provider('fsApi', function() {
         var provider = this;
@@ -21,6 +21,7 @@
             url: null,
             timeout: 60,
             uploadTimeout: 600,
+            slowTimeout: 5,
             encoding: 'json',
             dataKey: 'data',
             events: {
@@ -112,7 +113,7 @@
          * - {@link fs.fsApi#methods_put `put`}
          * - {@link fs.fsApi#methods_delete `delete`}
          */
-        this.$get = function($http, $httpParamSerializer) {
+        this.$get = function($http, $httpParamSerializer,fsAlert) {
 
             var events = [];
 
@@ -375,6 +376,13 @@
                 begin(request, headers, options);
 
                 var timeout = hasFile ? options.uploadTimeout : options.timeout;
+                var slowTimeout = null;
+
+                if(options.slowTimeout) {
+                	slowTimeout = setTimeout(function() {
+	                	fsAlert.info('Your request is still processing, please wait...',{ hideDelay: 0 });
+	                },options.slowTimeout * 1000);
+	            }
 
                 return $http({
                     method: method,
@@ -397,6 +405,7 @@
                 })
 
                 .then(function(response) {
+                	fsAlert.clear();
                     complete(response, options);
 
                     if (response && options.apply) {
@@ -421,20 +430,22 @@
                     return success(response, options);
                 })
                 .catch(function(response) {
-
+                	fsAlert.clear();
                     complete(response, options);
 
                     fail(response, options);
 
+                })
+                .finally(function() {
+                	if(slowTimeout) {
+                		clearTimeout(slowTimeout);
+                	}
                 });
             }
 
             function begin(data, headers, options) {
-
                 runEvents('begin', options, [data, headers, options]);
-
             }
-
 
             function success(response, options) {
 
