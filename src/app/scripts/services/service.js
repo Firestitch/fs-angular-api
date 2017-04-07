@@ -406,7 +406,6 @@
                 })
 
                 .then(function(response) {
-                	fsAlert.clear();
                     complete(response, options);
 
                     if (response && options.apply) {
@@ -431,11 +430,8 @@
                     return success(response, options);
                 })
                 .catch(function(response) {
-                	fsAlert.clear();
                     complete(response, options);
-
                     fail(response, options);
-
                 })
                 .finally(function() {
                 	clearTimeout(slowTimeout);
