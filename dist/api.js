@@ -339,6 +339,7 @@
              */
 
             function send(method, endpoint, data, options) {
+            	clearSlowAlert();
 
                 options = angular.extend({}, provider.options(), options || {});
                 var headers = options.headers || {};
@@ -382,7 +383,7 @@
 	                timeout = options.timeout;
 	                if(options.slowTimeout) {
 	                	slowTimeout = setTimeout(function() {
-		                	fsAlert.info('Your request is still processing, please wait...',{ hideDelay: 0 });
+		                	fsAlert.info('Your request is still processing, please wait...',{ hideDelay: 0, toastClass: 'fs-api-slow-timeout' });
 		                },options.slowTimeout * 1000);
 		            }
 		        }
@@ -437,7 +438,14 @@
                 })
                 .finally(function() {
                 	clearTimeout(slowTimeout);
+                	clearSlowAlert();
                 });
+            }
+
+            function clearSlowAlert() {
+            	if(document.querySelector('.fs-api-slow-timeout')) {
+            		fsAlert.clear();
+            	}
             }
 
             function begin(data, headers, options) {
