@@ -16,7 +16,7 @@
 
 	$scope.upload = function(file) {
 		if(file) {
-			fsApi.post('dummy', { count: 10, date: new Date(), test111: 111, file: file }, { headers: { 'Api-Key': '7234987sdtf8345rtgasyhd' }})
+			fsApi.post('dummy', { count: 10, date: new Date(), test111: 111, file: file }, { progress: false, headers: { 'Api-Key': '7234987sdtf8345rtgasyhd' }})
 			.then(function(data) {
 
 			});

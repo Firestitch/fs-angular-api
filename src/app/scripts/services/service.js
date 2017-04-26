@@ -10,10 +10,12 @@
      * interact with REST API servers in a simple and convenient way.
      */
 
-    angular.module('fs-angular-api', ['fs-angular-alert'])
+    angular.module('fs-angular-api', ['fs-angular-alert','angular-loading-bar'])
 
-    .provider('fsApi', function() {
+    .provider('fsApi', function(cfpLoadingBarProvider) {
         var provider = this;
+
+        cfpLoadingBarProvider.includeSpinner = false;
 
         this._options = {
             url: null,
@@ -320,6 +322,7 @@
              * @param {integer} options.timeout The number of milliseconds until the request timesout
              * @param {string} options.dataKey The key that represents the the data object in the response
              * @param {object} options.apply After the request is compelte apply a callback function to targeted data
+             * @param {boolean} options.progress Progress bar loading visibility
                 <ul>
                     <li>
                         <label>function</label>
@@ -392,6 +395,7 @@
                     headers: headers,
                     timeout: timeout * 1000,
                     data: request,
+                    ignoreLoadingBar: options.progress===false,
                     transformRequest: function(obj) {
                         if (options.encoding == 'url') {
                             var str = [];
