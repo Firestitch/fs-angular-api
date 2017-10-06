@@ -113,7 +113,7 @@
          * - {@link fs.fsApi#methods_put `put`}
          * - {@link fs.fsApi#methods_delete `delete`}
          */
-        this.$get = function($http, $httpParamSerializer,fsAlert) {
+        this.$get = function($http, $httpParamSerializer,fsAlert,$location) {
 
             var events = [];
 
@@ -389,9 +389,19 @@
 		            }
 		        }
 
+		        var url = options.url + endpoint;
+		        if(options.forceHttps && !url.match(/^https/)) {
+
+		        	if(url.match(/^http/)) {
+		        		url = url.replace(/^https/,'https');
+		        	} else {
+		        		url = 'https://' + $location.$$host + ($location.$$port==80 ? '' : ':' + $location.$$port) + url;
+		        	}
+		        }
+
                 return $http({
                     method: method,
-                    url: options.url + endpoint,
+                    url: url,
                     headers: headers,
                     timeout: timeout * 1000,
                     data: request,
