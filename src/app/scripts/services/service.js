@@ -20,7 +20,7 @@
         this._options = {
             url: null,
             timeout: 60,
-            uploadTimeout: 600,
+            uploadTimeout: 3600,
             slowTimeout: 5,
             encoding: 'json',
             dataKey: 'data',
